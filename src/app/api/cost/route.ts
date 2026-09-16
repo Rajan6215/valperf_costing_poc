@@ -1,0 +1,3 @@
+import { databaseFailure, fail, ok } from "@/lib/api"; import { getCosts, isDate, type CostFilters } from "@/lib/queries/cost";
+export const runtime="nodejs"; export const dynamic="force-dynamic";
+export async function GET(request:Request){const url=new URL(request.url);const filters:CostFilters={from:url.searchParams.get("from")||undefined,to:url.searchParams.get("to")||undefined,workspace:url.searchParams.get("workspace")||undefined,product:url.searchParams.get("product")||undefined,resourceType:url.searchParams.get("resourceType")||undefined};if((filters.from&&!isDate(filters.from))||(filters.to&&!isDate(filters.to)))return fail("Invalid date. Use YYYY-MM-DD.",400);try{return ok(await getCosts(filters));}catch{return databaseFailure("Cost explorer");}}

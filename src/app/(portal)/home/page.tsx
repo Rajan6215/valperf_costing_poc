@@ -1,0 +1,5 @@
+import { HomeConnection } from "@/components/home-data";
+import { PageHeader } from "@/components/ui";
+
+const steps = [{ title: "Connect Databricks", text: "Securely connect your workspace." }, { title: "Analyze Usage & Cost", text: "See how your Databricks spend is allocated." }, { title: "Find Optimization Opportunities", text: "Turn insights into practical savings." }];
+export default function HomePage() { return <><PageHeader title="Welcome to ValPerf" description="Connect your Databricks environment to start understanding your cost, resources and optimization opportunities."/><HomeConnection/><section className="mt-10"><p className="text-sm font-semibold uppercase tracking-wider text-slate-400">How it works</p><div className="mt-4 grid gap-4 md:grid-cols-3">{steps.map((step,i)=><article key={step.title} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"><div className="mb-5 grid h-9 w-9 place-items-center rounded-full bg-slate-900 text-sm font-bold text-white">{i+1}</div><h3 className="font-semibold">{step.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{step.text}</p></article>)}</div></section></>; }
